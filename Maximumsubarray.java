@@ -38,6 +38,7 @@ class Solution {
         }
         return maxsum;
     }
+    //brute force and prefix sum wont work due to time limit exceed erorr
 
     public int kadane(int[] nums) {
         int cs=nums[0];
