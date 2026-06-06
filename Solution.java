@@ -1,40 +1,38 @@
-class Solution {
+public class Solution {
 
     public static int bruteforce(int arr[]) {
-        int currsum;
+        int cursum;
         int maxsum=Integer.MIN_VALUE;
         for(int i=0;i<arr.length;i++){
-            for(int j=i;j<arr.length;j++){
-                currsum=0;
+            for(int j=0;j<arr.length;j++){
+                cursum=0;
                 for(int k=i;k<=j;k++){
-                    currsum+=arr[k];
+                    cursum+=arr[k];
                 }
-                System.out.println(currsum);
-                if(maxsum<currsum){
-                    maxsum=currsum;
+                if(cursum>maxsum){
+                    maxsum=cursum;
                 }
             }
-            
         }
         return maxsum;
     }
 
-    public static void prefixsum(int arr[]) {
-        int currsum;
+    public static int prefixsum(int arr[]) {
+        int cursum=0;
         int maxsum=Integer.MIN_VALUE;
-        int prefix[]=new int[arr.length];
+        int prefix[]= new int[arr.length];
         prefix[0]=arr[0];
-
-        for(int i=1;i<prefix.length;i++){
+        for(int i=1;i<arr.length;i++){
             prefix[i]=prefix[i-1]+arr[i];
         }
         for(int i=0;i<arr.length;i++){
             for(int j=i;j<arr.length;j++){
-                currsum=i==0 ? prefix[j] : prefix[j]-prefix[i-1];
-                if(maxsum<currsum){
-                    maxsum=currsum;
-                }
+                cursum=i==0 ? prefix[j]:prefix[j]-prefix[i-1];
+                if(maxsum<cursum){
+                maxsum=cursum;
             }
+            }
+            
         }
         return maxsum;
     }
@@ -50,4 +48,11 @@ class Solution {
         }
         return ms;
     }
+
+
+    public static void main(String [] args){
+        int a[]={-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println(prefixsum(a));
+    }
 }
+
